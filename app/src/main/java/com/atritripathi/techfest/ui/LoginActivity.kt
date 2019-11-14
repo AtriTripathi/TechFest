@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.atritripathi.techfest.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -20,14 +21,21 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+
+        mAuth = FirebaseAuth.getInstance()
+        if (mAuth!!.currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
+        setContentView(com.atritripathi.techfest.R.layout.activity_login)
 
         initialise()
     }
 
     private fun initialise() {
 
-        mAuth = FirebaseAuth.getInstance()
+//        mAuth = FirebaseAuth.getInstance()
 
         button_create_acc!!
             .setOnClickListener { startActivity(Intent(this@LoginActivity,

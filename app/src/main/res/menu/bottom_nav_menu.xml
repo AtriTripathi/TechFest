@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_recents"
+        android:id="@+id/action_events"
         android:enabled="true"
-        android:icon="@drawable/ic_settings"
-        android:title="Recents"
+        android:icon="@drawable/ic_event"
+        android:title="Events"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_favorites"

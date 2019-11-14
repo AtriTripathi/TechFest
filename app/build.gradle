@@ -90,7 +90,8 @@ dependencies {
     def retrofit2_version = "2.6.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
-    implementation 'com.android.support:design:28.0.0'
 
+    // For Circular Image View
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
 
 }

@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@android:color/holo_green_dark"
+    app:cardBackgroundColor="@android:color/holo_blue_dark"
     app:cardCornerRadius="4dp"
-    android:layout_margin="4dp"
+    android:layout_marginRight="12dp"
+    android:layout_marginLeft="12dp"
     app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,11 +20,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Event Name"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_event_time"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintEnd_toStartOf="@+id/tv_event_time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,29 +37,67 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="3"
             android:text="Event Details\nBlah Blah Blah..."
+            android:textColor="@color/common_google_signin_btn_text_light_pressed"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_event_tp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_event_title" />
+            app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <TextView
             android:id="@+id/tv_event_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="19dp"
-            android:text="TextView"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_event_body"
+            android:text="Time"
+            android:textColor="@color/common_google_signin_btn_text_light_pressed"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_event_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_event_title"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tv_event_title" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="180dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/common_google_signin_btn_text_light_default"
+            app:layout_constraintBottom_toBottomOf="@id/tv_event_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_event_body" />
+
+        <TextView
+            android:id="@+id/tv_event_tp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="50"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_event_coin"
+            app:layout_constraintEnd_toStartOf="@+id/iv_event_coin"
+            app:layout_constraintTop_toTopOf="@+id/iv_event_coin" />
+
+        <ImageView
+            android:id="@+id/iv_event_coin"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:srcCompat="@mipmap/ic_launcher_round" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

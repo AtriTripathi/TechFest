@@ -1,5 +1,6 @@
 package com.atritripathi.techfest.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -32,7 +33,37 @@ class MainActivity : AppCompatActivity(), EventsAdapter.Interaction {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("events")
         eventsList = mutableListOf()
 
-        mDatabaseReference!!.addValueEventListener(object: ValueEventListener{
+
+        initRecyclerView()
+
+//        addToDatabase()
+        getFromDatabase()
+
+//        handleNetworkApi()
+
+        bottom_navigation.setOnNavigationItemSelectedListener { menuItem ->
+            when(menuItem.itemId) {
+                R.id.action_events -> {
+                    Toast.makeText(this, "Recents", Toast.LENGTH_SHORT).show()
+
+
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.action_favorites -> {
+
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.action_nearby -> {
+                    return@setOnNavigationItemSelectedListener true
+                }
+                else -> return@setOnNavigationItemSelectedListener false
+            }
+        }
+    }
+
+    private fun getFromDatabase() {
+
+        mDatabaseReference!!.addValueEventListener(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
@@ -47,38 +78,13 @@ class MainActivity : AppCompatActivity(), EventsAdapter.Interaction {
                 }
             }
         })
-
-        addToDatabase()
-
-        initRecyclerView()
-
-//        handleNetworkApi()
-
-        bottom_navigation.setOnNavigationItemSelectedListener { menuItem ->
-            when(menuItem.itemId) {
-                R.id.action_recents -> {
-                    Toast.makeText(this, "Recents", Toast.LENGTH_SHORT).show()
-
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.action_favorites -> {
-
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.action_nearby -> {
-
-                    return@setOnNavigationItemSelectedListener true
-                }
-                else -> return@setOnNavigationItemSelectedListener false
-            }
-        }
     }
 
     private fun addToDatabase() {
 
         val eventId = mDatabaseReference!!.push().key
 
-        val event = Event(eventId,"someTitle","10AM","Bla Bla Bla",50)
+        val event = Event(eventId,"someTitle","10AM","Bla Bla Bla","50")
         mDatabaseReference!!.child(eventId!!).setValue(event).addOnCompleteListener {task ->
             if (task.isSuccessful) {
                 Toast.makeText(this,"New Event added",Toast.LENGTH_SHORT).show()
@@ -138,5 +144,8 @@ class MainActivity : AppCompatActivity(), EventsAdapter.Interaction {
     override fun onItemSelected(position: Int, item: Event) {
         // Open the card view and show details
         Toast.makeText(this, "Item selected", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this,EventActivity::class.java)
+        intent.putExtra("EVENT_EXTRA", item)
+        startActivity(intent)
     }
 }

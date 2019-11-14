@@ -48,13 +48,12 @@ class RegisterActivity : AppCompatActivity() {
         email = et_email?.text.toString()
         password = et_password?.text.toString()
 
-        val social = Social(listOf())
+        val social = Social(listOf("linkdein.com/Atri"))
 
         if (!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName)
             && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
-            mAuth!!
-                .createUserWithEmailAndPassword(email!!, password!!)
+            mAuth!!.createUserWithEmailAndPassword(email!!, password!!)
                 .addOnCompleteListener(this) { task ->
 
                     if (task.isSuccessful) {

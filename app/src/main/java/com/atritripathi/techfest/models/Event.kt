@@ -5,6 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+
 data class Event(
 
     val id: String? = null,
@@ -21,14 +22,15 @@ data class Event(
     @SerializedName("body")
     val body: String? = null,
 
-    var techiePoints: Int? = null
+    var techiePoints: String? = null
+
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readValue(Int::class.java.classLoader) as? Int
+        parcel.readString()
     )
 
     override fun equals(other: Any?): Boolean {
@@ -46,20 +48,11 @@ data class Event(
         parcel.writeString(title)
         parcel.writeString(time)
         parcel.writeString(body)
-        parcel.writeValue(techiePoints)
+        parcel.writeString(techiePoints)
     }
 
     override fun describeContents(): Int {
         return 0
-    }
-
-    override fun hashCode(): Int {
-        var result = id?.hashCode() ?: 0
-        result = 31 * result + (title?.hashCode() ?: 0)
-        result = 31 * result + (time?.hashCode() ?: 0)
-        result = 31 * result + (body?.hashCode() ?: 0)
-        result = 31 * result + (techiePoints ?: 0)
-        return result
     }
 
     companion object CREATOR : Parcelable.Creator<Event> {

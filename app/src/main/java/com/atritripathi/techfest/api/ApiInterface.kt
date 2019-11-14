@@ -4,9 +4,11 @@ import com.atritripathi.techfest.models.Event
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
 
 interface ApiInterface {
 
+    @GET("resources/events.json")
     fun getEvents() : Call<List<Event>>
 
     companion object {

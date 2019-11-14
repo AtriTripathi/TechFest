@@ -1,11 +1,12 @@
-package com.atritripathi.techfest
+package com.atritripathi.techfest.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.atritripathi.techfest.ui.MainActivity
+import com.atritripathi.techfest.R
+import com.atritripathi.techfest.models.Social
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -35,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference!!.child("Users")
         mAuth = FirebaseAuth.getInstance()
-        println("DEBUG: " + mAuth)
+        println("DEBUG: $mAuth")
         button_register.setOnClickListener {
             registerNewAccount()
         }
@@ -46,6 +47,8 @@ class RegisterActivity : AppCompatActivity() {
         lastName = et_last_name?.text.toString()
         email = et_email?.text.toString()
         password = et_password?.text.toString()
+
+        val social = Social(listOf())
 
         if (!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName)
             && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
@@ -58,11 +61,14 @@ class RegisterActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         val userId = mAuth!!.currentUser!!.uid
                         //Verify Email
-                        verifyEmail();
+                        verifyEmail()
                         //update user profile information
                         val currentUserDb = mDatabaseReference!!.child(userId)
                         currentUserDb.child("firstName").setValue(firstName)
                         currentUserDb.child("lastName").setValue(lastName)
+                        currentUserDb.child("techiePoints").setValue(50)
+                        currentUserDb.child("socials").setValue(social)
+
                         updateUserInfoAndUI()
                     } else {
                         // If sign in fails, display a message to the user.
@@ -74,13 +80,6 @@ class RegisterActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Enter all details", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun updateUserInfoAndUI() {
-        //start next activity
-        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
     }
 
     private fun verifyEmail() {
@@ -97,5 +96,12 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun updateUserInfoAndUI() {
+        //start next activity
+        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
     }
 }

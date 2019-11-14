@@ -8,7 +8,7 @@ import retrofit2.http.GET
 
 interface ApiInterface {
 
-    @GET("resources/events.json")
+    @GET("resources/event.json")
     fun getEvents() : Call<List<Event>>
 
     companion object {

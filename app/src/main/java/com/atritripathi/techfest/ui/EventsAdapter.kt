@@ -67,9 +67,9 @@ class EventsAdapter(private val interaction: Interaction? = null) :
                 interaction?.onItemSelected(adapterPosition, item)
             }
 
-            tv_event_title.text == item.title
-            tv_event_body.text == item.body
-            tv_event_time.text == item.time
+            tv_event_title.text = item.title
+            tv_event_body.text = item.body
+            tv_event_time.text = item.time
 
         }
     }

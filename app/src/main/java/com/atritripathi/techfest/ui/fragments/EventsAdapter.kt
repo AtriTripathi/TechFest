@@ -1,4 +1,4 @@
-package com.atritripathi.techfest.ui
+package com.atritripathi.techfest.ui.fragments
 
 import android.view.LayoutInflater
 import android.view.View

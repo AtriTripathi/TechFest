@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_events"
+        android:id="@+id/eventFragment"
         android:enabled="true"
         android:icon="@drawable/ic_event"
         android:title="Events"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/walletFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_settings"
-        android:title="Favorites"
+        android:icon="@drawable/ic_wallet"
+        android:title="Wallet"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_nearby"
+        android:id="@+id/profileFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_settings"
-        android:title="Nearby"
+        android:icon="@drawable/ic_account"
+        android:title="Profile"
         app:showAsAction="ifRoom" />
 </menu>

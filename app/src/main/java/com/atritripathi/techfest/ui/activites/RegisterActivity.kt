@@ -1,8 +1,10 @@
-package com.atritripathi.techfest.ui
+package com.atritripathi.techfest.ui.activites
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.atritripathi.techfest.R
@@ -18,6 +20,7 @@ class RegisterActivity : AppCompatActivity() {
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
+    private var mProgressBar: ProgressBar? = null
 
     // vars
     private var firstName: String? = null
@@ -36,6 +39,8 @@ class RegisterActivity : AppCompatActivity() {
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference!!.child("Users")
         mAuth = FirebaseAuth.getInstance()
+        mProgressBar = ProgressBar(this)
+
         println("DEBUG: $mAuth")
         button_register.setOnClickListener {
             registerNewAccount()
@@ -53,10 +58,15 @@ class RegisterActivity : AppCompatActivity() {
         if (!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName)
             && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
+            progressbar.visibility = View.VISIBLE
+
             mAuth!!.createUserWithEmailAndPassword(email!!, password!!)
                 .addOnCompleteListener(this) { task ->
 
                     if (task.isSuccessful) {
+
+                        progressbar.visibility = View.INVISIBLE
+
                         // Sign in success, update UI with the signed-in user's information
                         val userId = mAuth!!.currentUser!!.uid
                         //Verify Email
@@ -73,6 +83,8 @@ class RegisterActivity : AppCompatActivity() {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(this@RegisterActivity, "Authentication failed: ${task.exception?.message}",
                             Toast.LENGTH_SHORT).show()
+
+                        progressbar.visibility = View.INVISIBLE
                     }
                 }
 

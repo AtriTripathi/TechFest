@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.atritripathi.techfest">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.hardware.camera" />
+    <uses-permission android:name="android.hardware.camera.autofocus" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.EventActivity"></activity>
-        <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.RegisterActivity" />
-        <activity android:name=".ui.LoginActivity">
+        <activity android:name=".ui.activites.EventActivity"></activity>
+        <activity android:name=".ui.activites.MainActivity" />
+        <activity android:name=".ui.activites.RegisterActivity" />
+        <activity android:name=".ui.activites.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

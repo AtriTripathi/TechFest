@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/eventFragment">
+
+    <fragment
+        android:id="@+id/eventFragment"
+        android:name="com.atritripathi.techfest.ui.fragments.EventFragment"
+        android:label="Events"
+        tools:layout="@layout/fragment_event" />
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.atritripathi.techfest.ui.fragments.WalletFragment"
+        android:label="Wallet"
+        tools:layout="@layout/fragment_wallet" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.atritripathi.techfest.ui.fragments.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

@@ -1,4 +1,4 @@
-package com.atritripathi.techfest.ui
+package com.atritripathi.techfest.ui.activites
 
 import android.os.Bundle
 import android.widget.Toast
@@ -24,6 +24,7 @@ class EventActivity : AppCompatActivity() {
 
         button_register_event.setOnClickListener {
             Toast.makeText(this,"You're registered for the event",Toast.LENGTH_SHORT).show()
+
         }
     }
 }

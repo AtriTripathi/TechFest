@@ -1,14 +1,13 @@
-package com.atritripathi.techfest.ui
+package com.atritripathi.techfest.ui.activites
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
-
-
 
 class LoginActivity : AppCompatActivity() {
 
@@ -21,6 +20,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
 
         mAuth = FirebaseAuth.getInstance()
         if (mAuth!!.currentUser != null) {
@@ -35,8 +36,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initialise() {
 
-//        mAuth = FirebaseAuth.getInstance()
-
         button_create_acc!!
             .setOnClickListener { startActivity(Intent(this@LoginActivity,
                 RegisterActivity::class.java)) }
@@ -48,9 +47,12 @@ class LoginActivity : AppCompatActivity() {
         password = et_password?.text.toString()
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
+            progressbar_login.visibility = View.VISIBLE
+
             mAuth!!.signInWithEmailAndPassword(email!!, password!!)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
+                        progressbar_login.visibility = View.INVISIBLE
                         // Sign in success, update UI with signed-in user's information
                         println("signInWithEmail:success")
                         updateUI()
